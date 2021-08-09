@@ -11,6 +11,8 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private float tick; // How many seconds until a tick passes
     [SerializeField] private float cashPerTick; // How much cash we get per tick
 
+    protected UIManager ui;
+
     public string CashName { get => cashName; set => cashName = value; }
     public float Cash { get => cash; set => cash = value; }
     public float CashPerClick { get => cashPerClick; set => cashPerClick = value; }
@@ -25,6 +27,13 @@ public class PlayerData : MonoBehaviour
         string file = JsonUtility.ToJson(this, true);
         string dir = Path.Combine(Application.streamingAssetsPath, $"PlayerData/data.json");
         File.WriteAllText(dir, file);
+    }
+    private void Awake()
+    {
+        ui = GameObject.FindObjectOfType<UIManager>();
+        LoadData(Path.Combine(Application.streamingAssetsPath, "PlayerData", "data"));
+        ui.UpdateCashAmount(cash);
+        ui.UpdateCashName(cashName);
     }
 
     public void LoadData(string dir)
