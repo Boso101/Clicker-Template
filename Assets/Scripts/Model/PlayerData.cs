@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private float tick; // How many seconds until a tick passes
     [SerializeField] private float cashPerTick; // How much cash we get per tick
 
-    protected UIManager ui;
+    public UIManager ui;
+    protected float tickCounter;
+
 
     public string CashName { get => cashName; set => cashName = value; }
     public float Cash { get => cash; set => cash = value; }
@@ -25,13 +28,13 @@ public class PlayerData : MonoBehaviour
     public void SaveData()
     {
         string file = JsonUtility.ToJson(this, true);
-        string dir = Path.Combine(Application.streamingAssetsPath, $"PlayerData/data.json");
+        string dir = Path.Combine(Application.streamingAssetsPath, "PlayerData/data.json");
         File.WriteAllText(dir, file);
     }
     private void Awake()
     {
         ui = GameObject.FindObjectOfType<UIManager>();
-        LoadData(Path.Combine(Application.streamingAssetsPath, "PlayerData", "data"));
+        LoadData(Application.streamingAssetsPath + "/PlayerData/" + "data.json");
         ui.UpdateCashAmount(cash);
         ui.UpdateCashName(cashName);
     }
@@ -46,6 +49,33 @@ public class PlayerData : MonoBehaviour
         catch
         {
             Debug.LogError("Something went wrong reading the directory");
+        }
+    }
+
+    private void OnDisable()
+    {
+        SaveData();
+    }
+
+    public void GainCash()
+    {
+        cash += cashPerClick;
+        ui.UpdateCashAmount(cash);
+    }
+
+
+    private void Start()
+    {
+        tickCounter = tick;
+    }
+
+    private void Update()
+    {
+        tickCounter -= Time.deltaTime;
+        if(tickCounter <= 0)
+        {
+            cash += cashPerTick;
+            tickCounter = tick;
         }
     }
 

@@ -30,29 +30,31 @@ public class Upgrade : MonoBehaviour
     public string UpgradeDescription { get => upgradeDescription; set => upgradeDescription = value; }
     public float CashPerClickIncrease { get => cashPerClickIncrease; set => cashPerClickIncrease = value; }
     public float CashPerTickIncrease { get => cashPerTickIncrease; set => cashPerTickIncrease = value; }
+    protected PlayerData player;
 
 
     private void Awake()
     {
         btn = GetComponent<Button>();
         text = GetComponentInChildren<Text>();
-        OnPurchase.AddListener(Purchase);
+        player = GameObject.FindObjectOfType<PlayerData>();
     }
 
-    public bool CanAfford(PlayerData player)
+    public bool CanAfford()
     {
         return player.Cash >= upgradeCost;
     }
 
-    public void Purchase(PlayerData data)
+    public void Purchase()
     {
-        if(CanAfford(data))
+        if(CanAfford())
         {
 
-        data.CashPerClick += CashPerClickIncrease;
-        data.CashPerTick += CashPerClickIncrease;
-        data.Cash -= upgradeCost;
-        StartCoroutine("RestCD");
+        player.CashPerClick += CashPerClickIncrease;
+        player.CashPerTick += CashPerClickIncrease;
+        player.Cash -= upgradeCost;
+        StartCoroutine("ResetCD");
+            player.ui.UpdateCashAmount(player.Cash);
         }
 
     }

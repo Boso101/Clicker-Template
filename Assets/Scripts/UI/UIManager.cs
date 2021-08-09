@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Text cashName;
     public Text cashAmount;
-
+    public Image image;
 
 
 
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCashAmount(float amount)
     {
-        cashAmount.text = amount.ToString("C0");
+        cashAmount.text = amount.ToString("C");
     }
 
 }
