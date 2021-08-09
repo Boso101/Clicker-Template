@@ -13,18 +13,18 @@ public class UpgradeLoad : MonoBehaviour
         //Load
         LoadAllUpgrades();
     }
-
+    
 
     public void LoadAllUpgrades()
     {
-        string targDir = Path.Combine(Application.streamingAssetsPath, "Upgrades");
-        string[] directores = Directory.GetDirectories(targDir);
+        string targDir = Application.streamingAssetsPath + "/Upgrades";
         Upgrade spawned;
         
-        foreach(string file in directores)
+        foreach(string file in Directory.GetFiles(targDir, "*.json"))
         {
-            spawned = Instantiate(prefab, buttonHolder);
-            spawned.LoadJson(file + "/");
+            string fName = Path.GetFileName(file);
+        spawned = Instantiate(prefab, buttonHolder);
+        spawned.LoadJson(targDir + "/" + fName);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -15,4 +16,28 @@ public class PlayerData : MonoBehaviour
     public float CashPerClick { get => cashPerClick; set => cashPerClick = value; }
     public float Tick { get => tick; set => tick = value; }
     public float CashPerTick { get => cashPerTick; set => cashPerTick = value; }
+
+
+    [ContextMenu("Save")]
+
+    public void SaveData()
+    {
+        string file = JsonUtility.ToJson(this, true);
+        string dir = Path.Combine(Application.streamingAssetsPath, $"PlayerData/data.json");
+        File.WriteAllText(dir, file);
+    }
+
+    public void LoadData(string dir)
+    {
+        try
+        {
+
+            JsonUtility.FromJsonOverwrite(File.ReadAllText(dir), this);
+        }
+        catch
+        {
+            Debug.LogError("Something went wrong reading the directory");
+        }
+    }
+
 }

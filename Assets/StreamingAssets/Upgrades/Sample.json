@@ -1,8 +1,8 @@
 {
     "upgradeName": "Sample",
     "upgradeDescription": "Sample Text",
-    "upgradeCost": 0.0,
-    "cooldown": 0.0,
-    "cashPerClickIncrease": 0.0,
+    "upgradeCost": 100,
+    "cooldown": 5,
+    "cashPerClickIncrease": 0.5,
     "cashPerTickIncrease": 0.0
 }

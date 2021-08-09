@@ -11,6 +11,7 @@ public class Upgrade : MonoBehaviour
     public class UpgradeEvent : UnityEvent<PlayerData> { }
 
     protected Button btn;
+    protected Text text;
 
     [SerializeField] protected string upgradeName;
     [SerializeField] protected string upgradeDescription;
@@ -34,6 +35,7 @@ public class Upgrade : MonoBehaviour
     private void Awake()
     {
         btn = GetComponent<Button>();
+        text = GetComponentInChildren<Text>();
         OnPurchase.AddListener(Purchase);
     }
 
@@ -64,7 +66,22 @@ public class Upgrade : MonoBehaviour
     
     public void LoadJson(string dir)
     {
-        JsonUtility.FromJsonOverwrite(dir, this);
+   
+      
+         try
+        {
+
+            JsonUtility.FromJsonOverwrite(File.ReadAllText(dir), this);
+        }
+        catch
+        {
+            Debug.LogError("Something went wrong reading the directory");
+        }
+
+
+
+        UpdateVisual();
+
     }
 
 
@@ -72,8 +89,13 @@ public class Upgrade : MonoBehaviour
     public void SaveJson()
     {
         string file = JsonUtility.ToJson(this, true);
-        string dir = Path.Combine(Application.streamingAssetsPath, $"Upgrades/{upgradeName}/{upgradeName}.json");
+        string dir = Path.Combine(Application.streamingAssetsPath, $"Upgrades/{upgradeName}.json");
         File.WriteAllText(dir, file);
+    }
+
+    public void UpdateVisual()
+    {
+        text.text = upgradeCost.ToString("C0") + " " + upgradeName;
     }
 
     private void Update()
