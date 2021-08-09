@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField] private string cashName; // What is our money called
-    [SerializeField] private float cash; // how much points we got
+    [SerializeField] private string cashName = "Money"; // What is our money called
+    [SerializeField] private float cash = 0; // how much points we got
     [SerializeField] private float cashPerClick = 1f; // How much we get per click
-    [SerializeField] private float tick; // How many seconds until a tick passes
-    [SerializeField] private float cashPerTick; // How much cash we get per tick
+    [SerializeField] private float tick= 1; // How many seconds until a tick passes
+    [SerializeField] private float cashPerTick= 1; // How much cash we get per tick
 
-    public UIManager ui;
+    [System.NonSerialized] public UIManager ui;
     protected float tickCounter;
 
 

@@ -1,10 +1,7 @@
 {
     "cashName": "Money",
-    "cash": 100.5,
-    "cashPerClick": 7.0,
+    "cash": 112.0,
+    "cashPerClick": 7.5,
     "tick": 1.0,
-    "cashPerTick": 6.0,
-    "ui": {
-        "instanceID": -19902
-    }
+    "cashPerTick": 6.5
 }
