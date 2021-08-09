@@ -15,7 +15,7 @@ public class Upgrade : MonoBehaviour
 
     public bool CanAfford()
     {
-
+        return true;
     }
 
     public void Purchase()
