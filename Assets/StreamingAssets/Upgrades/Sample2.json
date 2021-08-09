@@ -1,0 +1,8 @@
+{
+    "upgradeName": "Sample 2", 
+    "upgradeDescription": "Sample Text 2",
+    "upgradeCost": 500,
+    "cooldown": 10,
+    "cashPerClickIncrease": 1,
+    "cashPerTickIncrease": 0.0
+}

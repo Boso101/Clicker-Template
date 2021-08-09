@@ -490,7 +490,6 @@ MonoBehaviour:
   cashPerClick: 1
   tick: 0
   cashPerTick: 0
-  ui: {fileID: 0}
 --- !u!4 &1074261542
 Transform:
   m_ObjectHideFlags: 0
@@ -889,8 +888,8 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
