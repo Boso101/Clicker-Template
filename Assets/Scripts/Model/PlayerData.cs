@@ -17,7 +17,16 @@ public class PlayerData : MonoBehaviour
 
 
     public string CashName { get => cashName; set => cashName = value; }
-    public float Cash { get => cash; set => cash = value; }
+    public float Cash
+    {
+        get => cash;
+
+        set
+        {
+            cash = value;
+            ui.UpdateCashAmount(Cash);
+        }
+    }
     public float CashPerClick { get => cashPerClick; set => cashPerClick = value; }
     public float Tick { get => tick; set => tick = value; }
     public float CashPerTick { get => cashPerTick; set => cashPerTick = value; }
@@ -59,8 +68,8 @@ public class PlayerData : MonoBehaviour
 
     public void GainCash()
     {
-        cash += cashPerClick;
-        ui.UpdateCashAmount(cash);
+        Cash += cashPerClick;
+       
     }
 
 
@@ -74,7 +83,7 @@ public class PlayerData : MonoBehaviour
         tickCounter -= Time.deltaTime;
         if(tickCounter <= 0)
         {
-            cash += cashPerTick;
+            Cash += cashPerTick;
             tickCounter = tick;
         }
     }
