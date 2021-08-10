@@ -1,7 +1,7 @@
 {
-    "cashName": "Money",
-    "cash": 417.5,
-    "cashPerClick": 7.5,
+    "cashName": "Bitcoin",
+    "cash": 7.050017833709717,
+    "cashPerClick": 0.10000000149011612,
     "tick": 1.0,
-    "cashPerTick": 6.5
+    "cashPerTick": 0.05000000074505806
 }

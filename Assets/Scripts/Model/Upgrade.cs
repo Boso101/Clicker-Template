@@ -5,8 +5,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.IO;
 using UnityEditor;
+using System;
 
-public class Upgrade : MonoBehaviour
+public class Upgrade : MonoBehaviour, IComparable
 {
     public class UpgradeEvent : UnityEvent<PlayerData> { }
 
@@ -49,7 +50,7 @@ public class Upgrade : MonoBehaviour
     {
         if(CanAfford())
         {
-
+        
         player.CashPerClick += CashPerClickIncrease;
         player.CashPerTick += CashPerClickIncrease;
         player.Cash -= upgradeCost;
@@ -103,6 +104,15 @@ public class Upgrade : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    public int CompareTo(object obj)
+    {
+        Upgrade other = (Upgrade)obj;
+
+        if (other.upgradeCost < upgradeCost) { return -1; }
+        else if (other.upgradeCost > upgradeCost) { return 1; }
+        return 0;
     }
 
 }

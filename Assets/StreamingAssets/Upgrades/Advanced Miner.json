@@ -1,0 +1,8 @@
+{
+    "upgradeName": "Advanced Miner", 
+    "upgradeDescription": "Sample Text 2",
+    "upgradeCost": 10,
+    "cooldown": 10,
+    "cashPerClickIncrease": 0,
+    "cashPerTickIncrease": 0.05
+}

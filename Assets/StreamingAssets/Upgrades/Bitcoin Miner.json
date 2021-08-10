@@ -1,0 +1,8 @@
+{
+    "upgradeName": "Bitcoin Miner", 
+    "upgradeDescription": "Sample Text",
+    "upgradeCost": 5,
+    "cooldown": 5,
+    "cashPerClickIncrease": 0.0,
+    "cashPerTickIncrease": 0.01
+}

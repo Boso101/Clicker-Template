@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        
         image.texture = LoadImage(Application.streamingAssetsPath + "/ClickIcon/Icon.png", 128, 128);
     }
 
