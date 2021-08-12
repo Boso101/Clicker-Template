@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
+    public static int MAX_INT = 10000000;
     [SerializeField] private string cashName = "Money"; // What is our money called
     [SerializeField] private float cash = 0; // how much points we got
     [SerializeField] private float cashPerClick = 1f; // How much we get per click
     [SerializeField] private float tick= 1; // How many seconds until a tick passes
     [SerializeField] private float cashPerTick= 1; // How much cash we get per tick
+    [SerializeField] private int billionAmount = 0;
 
     [System.NonSerialized] public UIManager ui;
     protected float tickCounter;
@@ -23,13 +25,24 @@ public class PlayerData : MonoBehaviour
 
         set
         {
-            cash = value;
+            if(cash + value >= MAX_INT)
+            {
+                cash = 0;
+                billionAmount++;
+            }
+            else
+            {
+                cash = value;
+
+            }
+
             ui.UpdateCashAmount(Cash);
         }
     }
     public float CashPerClick { get => cashPerClick; set => cashPerClick = value; }
     public float Tick { get => tick; set => tick = value; }
     public float CashPerTick { get => cashPerTick; set => cashPerTick = value; }
+    public int BillionAmount { get => billionAmount; set => billionAmount = value; }
 
 
     [ContextMenu("Save")]

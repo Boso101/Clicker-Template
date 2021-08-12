@@ -43,19 +43,33 @@ public class Upgrade : MonoBehaviour, IComparable
 
     public bool CanAfford()
     {
-        return player.Cash >= upgradeCost;
+        return player.Cash >= upgradeCost || player.BillionAmount > 0;
     }
 
     public void Purchase()
     {
         if(CanAfford())
         {
-        
+        if(player.BillionAmount > 0)
+            {
+                //Use billion backup
+                player.BillionAmount--;
+                player.Cash = PlayerData.MAX_INT - upgradeCost;
+
+            }
+        else
+            {
+                player.Cash -= upgradeCost;
+
+            }
+
+
+
         player.CashPerClick += CashPerClickIncrease;
         player.CashPerTick += CashPerClickIncrease;
-        player.Cash -= upgradeCost;
+
+
         StartCoroutine("ResetCD");
-            player.ui.UpdateCashAmount(player.Cash);
         }
 
     }
@@ -103,7 +117,9 @@ public class Upgrade : MonoBehaviour, IComparable
 
     private void Update()
     {
-        
+        if (!CanAfford()) { btn.interactable = false; }
+        else
+            btn.interactable = true;
     }
 
     public int CompareTo(object obj)
